@@ -9,8 +9,8 @@ public class BasicIntIFloat{
 
 
         
-        final float fDIES_SETMANA = 7;  //Al posar 'final' abans de la variable, la declara com a no canviant;
-        float fprimerValor = 4; //float = valors amb decimals
+        final float fDIES_SETMANA = 7;
+        float fprimerValor = 4; 
         float fsegonValor = 6;
         float fresultat;
         fresultat=fprimerValor+fsegonValor;
