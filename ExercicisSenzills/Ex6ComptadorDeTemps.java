@@ -1,4 +1,5 @@
 package ExercicisSenzills;
+import java.text.DecimalFormat;
 
 public class Ex6ComptadorDeTemps {
     public static void main(String[] args) {
@@ -7,6 +8,8 @@ public class Ex6ComptadorDeTemps {
         long fin;
         String enter;
         String frase;
+        DecimalFormat find = new DecimalFormat("###.##");
+
 
         System.out.println("-----------------------------------------------------------------------");
         System.out.println("Escriu (Start) per començar a escriure (Setze jutges d'un jutjat mengen fetge en un penjat):");
@@ -17,11 +20,11 @@ public class Ex6ComptadorDeTemps {
             pes = System.currentTimeMillis();
             frase = System.console().readLine(); 
 
-            if (frase.equals("Setze jutges d'un jutjat mengen fetge en un penjat")){
+            if (frase.equals("hola")){
                 tem = System.currentTimeMillis();
                 fin = tem-pes;
                 System.out.println("-----------------------------------------------------------------------");
-                System.out.println("Has tardat "+fin+" milisegons");
+                System.out.println("Has tardat "+ find.format((float)fin/1000)+" segons");
                 System.out.println("-----------------------------------------------------------------------");
 
             }
