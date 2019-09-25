@@ -20,7 +20,7 @@ public class Ex6ComptadorDeTemps {
             pes = System.currentTimeMillis();
             frase = System.console().readLine(); 
 
-            if (frase.equals("hola")){
+            if (frase.equals("Setze jutges d'un jutjat mengen fetge en un penjat")){
                 tem = System.currentTimeMillis();
                 fin = tem-pes;
                 System.out.println("-----------------------------------------------------------------------");
