@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TestArray",
+            "request": "launch",
+            "mainClass": "TestArray",
+            "projectName": "Java_f2b3ac6d"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - SolucioDelPrograma",
             "request": "launch",
             "mainClass": "SolucioDelPrograma",

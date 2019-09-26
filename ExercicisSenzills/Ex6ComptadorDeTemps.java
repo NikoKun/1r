@@ -26,23 +26,19 @@ public class Ex6ComptadorDeTemps {
                 System.out.println("-----------------------------------------------------------------------");
                 System.out.println("Has tardat "+ find.format((float)fin/1000)+" segons");
                 System.out.println("-----------------------------------------------------------------------");
-
             }
 
             else {
                 System.out.println("-----------------------------------------------------------------------");
                 System.out.println("Ho has escrit malament...");
                 System.out.println("-----------------------------------------------------------------------");
-
-
             }
 
         }
+
         else {
         System.out.println("Sortint...");
-
         }
-
-
+        
      }
 }
