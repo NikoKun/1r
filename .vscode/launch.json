@@ -6,6 +6,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Ex8SorteigWhileNoRepetir2",
+            "request": "launch",
+            "mainClass": "ExercicisSenzills.Ex8SorteigWhileNoRepetir2"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex8SorteigWhileNoRepetir",
+            "request": "launch",
+            "mainClass": "ExercicisSenzills.Ex8SorteigWhileNoRepetir"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - TestArray",
             "request": "launch",
             "mainClass": "TestArray",
