@@ -6,6 +6,157 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - BINGOOOO",
+            "request": "launch",
+            "mainClass": "BINGOOOO"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex9ApuntAUnaCursaPerDorsal",
+            "request": "launch",
+            "mainClass": "Ex9ApuntAUnaCursaPerDorsal",
+            "projectName": "Java_67a90ae3"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - For",
+            "request": "launch",
+            "mainClass": "For"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BasicCalculadora",
+            "request": "launch",
+            "mainClass": "BasicCalculadora"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Array",
+            "request": "launch",
+            "mainClass": "Array"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ArrayBidimensional",
+            "request": "launch",
+            "mainClass": "ArrayBidimensional"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ProvaArrays",
+            "request": "launch",
+            "mainClass": "ProvaArrays"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ProvaArrayUnuBi",
+            "request": "launch",
+            "mainClass": "ProvaArrayUnuBi"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestArrayBidimensional",
+            "request": "launch",
+            "mainClass": "TestArrayBidimensional"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DoWhile",
+            "request": "launch",
+            "mainClass": "DoWhile"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - While",
+            "request": "launch",
+            "mainClass": "While"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex5",
+            "request": "launch",
+            "mainClass": "Ex5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex4",
+            "request": "launch",
+            "mainClass": "Ex4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex3",
+            "request": "launch",
+            "mainClass": "Ex3"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex2",
+            "request": "launch",
+            "mainClass": "Ex2"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex1",
+            "request": "launch",
+            "mainClass": "Ex1"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex6CalculNotes",
+            "request": "launch",
+            "mainClass": "Ex6CalculNotes"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex4PreguntesAmbPuntuacio",
+            "request": "launch",
+            "mainClass": "Ex4PreguntesAmbPuntuacio"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex4LletraDNI",
+            "request": "launch",
+            "mainClass": "Ex4LletraDNI"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex3NumeroPrimerONo",
+            "request": "launch",
+            "mainClass": "Ex3NumeroPrimerONo"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex2LlargadaFrase",
+            "request": "launch",
+            "mainClass": "Ex2LlargadaFrase"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex1NumeroParellOSenar",
+            "request": "launch",
+            "mainClass": "Ex1NumeroParellOSenar"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex9ApuntAUnaCursaPerNom",
+            "request": "launch",
+            "mainClass": "ExercicisSenzills.Ex9ApuntAUnaCursaPerNom"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex9",
+            "request": "launch",
+            "mainClass": "Ex9"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ex9ApuntAUnaCursa",
+            "request": "launch",
+            "mainClass": "ExercicisSenzills.Ex9ApuntAUnaCursa"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Ex8SorteigWhileNoRepetir2",
             "request": "launch",
             "mainClass": "ExercicisSenzills.Ex8SorteigWhileNoRepetir2"

@@ -68,7 +68,7 @@ class Ex4{
 
         System.out.println("A l'array 1 (longitud 10) hi han "+un00+" monedes en cara i "+un01+" en creu.");
         System.out.println("A l'array 2 (longitud 100) hi han "+un10+" monedes en cara i "+un11+" en creu.");
-        System.out.println("A l'array 3 (longitud 100) hi han "+un20+" monedes en cara i "+un21+" en creu.");
+        System.out.println("A l'array 3 (longitud 1000) hi han "+un20+" monedes en cara i "+un21+" en creu.");
 
 
     }

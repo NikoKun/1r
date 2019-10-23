@@ -1,4 +1,4 @@
-public class TestArray{
+public class Array{
     public static void main(String[] args) {
         System.out.println("Introdueix un primer nom: ");
         String nom0 = System.console().readLine();
