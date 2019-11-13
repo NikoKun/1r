@@ -1,7 +1,7 @@
 public class BasicCalculadora{
     public static void main(String[] args) {
-        float primerValor = 10;
-        float segonValor = 5;
+        float primerValor = 5;
+        float segonValor = 7;
 
         float resultatSuma;
         resultatSuma=primerValor+segonValor;
