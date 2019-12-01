@@ -5,7 +5,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 
-
 public class App {
     public static void main(String[] args) throws Exception {
         // Nom, cognom, adreça, població, data naix, user, passw
@@ -36,7 +35,7 @@ public class App {
             System.out.println("-------------------------------------------------------------------");
             System.out.println("1. Login");
             System.out.println("2. Register");
-            System.out.println("3. Llista els usuaris");
+            System.out.println("3. Llista usuaris per edat");
             System.out.println("4. Cerca");
             System.out.println("5. Exit");
             System.out.println("-------------------------------------------------------------------");
@@ -46,28 +45,29 @@ public class App {
 
             if (menu.equals("1")) {
                 System.out.println();
-                while(rape){
+                while (rape) {
                     String reg;
                     String pass;
 
                     reg = System.console().readLine("Introdueix l'usuari: ");
                     pass = System.console().readLine("Introdueix la contrasenya: ");
 
-
-                    for(int i=0; i<20; i++){
-                        if (reg.equals(usuaris[5][i])){
-                            if (pass.equals(usuaris[6][i])){
-                                System.out.println("-------------------------------------------------------------------");
+                    for (int i = 0; i < 20; i++) {
+                        if (reg.equals(usuaris[5][i])) {
+                            if (pass.equals(usuaris[6][i])) {
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                                 System.out.println("Usuari correcte!!!");
                                 rape = false;
                                 break;
                             }
-                        }
-                        else{
-                            if (i==19){
-                                System.out.println("-------------------------------------------------------------------");
+                        } else {
+                            if (i == 19) {
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                                 System.out.println("Login incorrecte!!!");
-                                System.out.println("-------------------------------------------------------------------");
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                                 rape = false;
                             }
                         }
@@ -75,10 +75,6 @@ public class App {
                     }
                 }
             }
-
-
-
-
 
             else if (menu.equals("2")) {
                 vols = false;
@@ -112,15 +108,17 @@ public class App {
                                 }
 
                                 else {
-                                    if (Integer.parseInt(dataAvui[0]) < Integer.parseInt(dataNaix[0])) {
+                                    if (Integer.parseInt(dataAvui[2]) < Integer.parseInt(dataNaix[2])) {
                                         edat[pos] = edat[pos] - 1;
                                     }
                                 }
 
                             } else {
-                                System.out.println("-------------------------------------------------------------------");
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                                 System.out.println("Aquesta data no es correcte!!!");
-                                System.out.println("-------------------------------------------------------------------");
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                             }
                         } else {
                             System.out.println("-------------------------------------------------------------------");
@@ -135,10 +133,13 @@ public class App {
                         rape = false;
                         user = System.console().readLine("Introdueix el teu nom d'usuari: ");
                         for (int i = 0; i < 20; i++) {
-                            if (user.equalsIgnoreCase(usuaris[5][i])) { // MIRAR ------------------------------------------------------
-                                System.out.println("-------------------------------------------------------------------");
+                            if (user.equalsIgnoreCase(usuaris[5][i])) { // MIRAR
+                                                                        // ------------------------------------------------------
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                                 System.out.println("Aquest nom d'usuari no esta disponible!!!");
-                                System.out.println("-------------------------------------------------------------------");
+                                System.out
+                                        .println("-------------------------------------------------------------------");
                                 rape = true;
                             }
                         }
@@ -163,8 +164,7 @@ public class App {
                     v = System.console().readLine();
                     if (v.equals("si")) {
                         vols = true;
-                    } 
-                    else {
+                    } else {
                         System.out.println("-------------------------------------------------------------------");
                         System.out.println("Torna a entrar la informació: ");
                         System.out.println("-------------------------------------------------------------------");
@@ -176,55 +176,80 @@ public class App {
                 pos++;
             }
 
-
-
-
-
             else if (menu.equals("3")) {
-                int edatOrd[]= new int[20];
-                Arrays.sort(edatOrd);
+                int edatOrd[] = new int[20];
+                String as;
+                int edatAux = 0;
+                ;
 
-                for (int j=0; j<pos; j++){
-                    edatOrd[j]= edat[j];
+                for (int i = 0; i < pos; i++) {
+                    edatOrd[i] = edat[i];
                 }
-                System.out.println("%s"+Arrays.toString(edatOrd));
-                for (int i=0; i<usuaris.length; i++){
+                for (int i = 0; i < pos; i++) {
+                    for (int j = (i + 1); j < pos; j++) {
+                        if (edatOrd[i] > edatOrd[j]) {
+                            edatAux = edatOrd[i];
+                            edatOrd[i] = edatOrd[j];
+                            edatOrd[j] = edatAux;
+                        }
+                    }
                 }
 
+                as = System.console().readLine("Ascendent (a) o Descendent(d): ");
 
+                if (as.equals("a")) {
+                    for (int i = 0; i < pos; i++) {
+                        for (int j = 0; j < pos; j++) {
+                            if (edatOrd[j] == edat[i]) {
+                                System.out.println("");
+                                System.out.print("Nom: " + usuaris[0][j] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.print("Cognom: " + usuaris[1][j] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.print("Població: " + usuaris[3][j] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.print("Edat: " + edat[i] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.println("");
+                            }
+                        }
+                    }
+                }
+                if (as.equals("d")) {
+                    for (int i = (pos - 1); i > -1; i--) {
+                        for (int j = (pos - 1); j > -1; j--) {
+                            if (edatOrd[j] == edat[i]) {
+                                System.out.println("");
+                                System.out.print("Nom: " + usuaris[0][j] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.print("Cognom: " + usuaris[1][j] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.print("Població: " + usuaris[3][j] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.print("Edat: " + edat[i] + "\t" + "\t");
+                                System.out.print("\n");
+                                System.out.println("");
+                            }
+                        }
+                    }
+                }
 
+                else {
+                    System.out.println("Aquesta opció no és correcte.");
+                }
 
-
-
-
-
-
-
-                // System.out.println("Info users: ");
-                // System.out.println("");
-                // for (int i = 0; i < usuaris.length; i++) {
-                //     for (int j = 0; j < pos; j++) {
-                //         System.out.print(usuaris[i][j] + "\t" + "\t");
-                //     }
-                //     System.out.print("\n");
-                // }
-                // System.out.println("");
             }
-
-
-
-
 
             else if (menu.equals("4")) {
                 System.out.println("Digues que vols filtrar:");
                 String filtre = System.console().readLine("Selecciona una opció: ");
                 Pattern pattern = Pattern.compile(filtre);
-                for (int j=0; j<pos; j++){
-                    for (int i=0; i<usuaris.length; i++){
+                for (int j = 0; j < pos; j++) {
+                    for (int i = 0; i < usuaris.length; i++) {
                         Matcher matcher = pattern.matcher(usuaris[i][j]);
-                        if (matcher.find()){
-                            System.out.println("");                            //MIRAR -----------------------
-                            for (int w=0; w<usuaris.length; w++){
+                        if (matcher.find()) {
+                            System.out.println(""); // MIRAR -----------------------
+                            for (int w = 0; w < usuaris.length; w++) {
                                 System.out.print(usuaris[w][j] + "\t" + "\t");
                                 System.out.print("\n");
                             }
@@ -234,10 +259,6 @@ public class App {
                     }
                 }
             }
-
-
-
-
 
             else if (menu.equals("5")) {
                 exit = true;
