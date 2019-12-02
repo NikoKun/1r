@@ -43,51 +43,100 @@ public class App {
         }
         System.out.println("-----------------------------------------------------------------");
 
+        String res;
+        res = System.console().readLine("Vols escollir els números (1) o generar-los alearotia-ment (2): ");
 
 
 
-        System.out.println("Digues els primers 5 números:");
-        for (int i=0; i<5; i++){
-            int resC = 0;
-            respostaC[i] = Integer.parseInt(System.console().readLine((i + 1) + ": "));
-            for (int j=0; j<respostaC.length; j++){
-                surtC[j] = (int)Math.floor(Math.random()*50+1);
-                if (respostaC[i]==respostaC[j]){
-                    resC++;
-                    if (resC==2){
-                        System.out.println("Aquest número està repetit!!!");
+
+        if (res.equals("1")){
+            System.out.println("Digues els primers 5 números:");
+            for (int i=0; i<5; i++){
+                int resC = 0;
+                respostaC[i] = Integer.parseInt(System.console().readLine((i + 1) + ": "));
+                for (int j=0; j<respostaC.length; j++){
+                    surtC[j] = (int)Math.floor(Math.random()*50+1);
+                    if (respostaC[i]==respostaC[j]){
+                        resC++;
+                        if (resC==2){
+                            System.out.println("Aquest número està repetit!!!");
+                            i--;
+                        }
+                    }
+                    else if ( respostaC[i]<1 || respostaC[i]>50){
+                        System.out.println("Número Incorrecte!!!");
                         i--;
                     }
-                }
-                else if ( respostaC[i]<1 || respostaC[i]>50){
-                    System.out.println("Número Incorrecte!!!");
-                    i--;
                 }
             }
+            System.out.println("-----------------------------------------------------------------");
+    
+            System.out.println("Digues els 2 ultims números:");
+            for (int i=0; i<2; i++){
+                int resD = 0;
+                respostaD[i] = Integer.parseInt(System.console().readLine((i + 1) + ": "));
+                for (int j=0; j<respostaD.length; j++){
+                    surtD[j] = (int)Math.floor(Math.random()*10+1);
+                    if (respostaD[i]==respostaD[j]){
+                        resD++;
+                        if (resD==2){
+                            i--;
+                        }
+                    }
+                    else if ( respostaD[i]<1 || respostaD[i]>10){
+                        i--;
+                    }
+                }        
+            }
         }
-        System.out.println("-----------------------------------------------------------------");
 
-        System.out.println("Digues els 2 ultims números:");
-        for (int i=0; i<2; i++){
-            int resD = 0;
-            respostaD[i] = Integer.parseInt(System.console().readLine((i + 1) + ": "));
-            for (int j=0; j<respostaD.length; j++){
-                surtD[j] = (int)Math.floor(Math.random()*10+1);
-                if (respostaD[i]==respostaD[j]){
-                    resD++;
-                    if (resD==2){
-                        System.out.println("Aquest número està repetit!!!");
+        else if (res.equals("2")){
+
+
+            for (int i=0; i<5; i++){
+                int resC = 0;
+                respostaC[i] = (int)Math.floor(Math.random()*50+1);
+
+                for (int j=0; j<respostaC.length; j++){
+                    surtC[j] = (int)Math.floor(Math.random()*50+1);
+                    if (respostaC[i]==respostaC[j]){
+                        resC++;
+                        if (resC==2){
+                            i--;
+                        }
+                    }
+                    else if ( respostaC[i]<1 || respostaC[i]>50){
                         i--;
                     }
                 }
-                else if ( respostaD[i]<1 || respostaD[i]>10){
-                    System.out.println("Número Incorrecte!!!");
-                    i--;
-                }
-            }        
+            }
+
+            for (int i=0; i<2; i++){
+                int resD = 0;
+                respostaD[i] = (int)Math.floor(Math.random()*10+1);
+                for (int j=0; j<respostaD.length; j++){
+                    surtD[j] = (int)Math.floor(Math.random()*10+1);
+                    if (respostaD[i]==respostaD[j]){
+                        resD++;
+                        if (resD==2){
+                            System.out.println("Aquest número està repetit!!!");
+                            i--;
+                        }
+                    }
+                    else if ( respostaD[i]<1 || respostaD[i]>10){
+                        System.out.println("Número Incorrecte!!!");
+                        i--;
+                    }
+                }        
+            }
+
+            System.console().readLine("Presiona enter per continuar...");
         }
 
 
+        else {
+            System.out.println("Aquesta opció no és correcte!!!");
+        }
 
 
     System.out.println("-----------------------------------------------------------------");
