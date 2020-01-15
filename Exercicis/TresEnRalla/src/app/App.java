@@ -9,7 +9,7 @@ public class App {
         String tempS;
         int primerTemporal = 0;
         int segFase[] = { 0, 0 };
-        int posInteligent[] = { 0, 0 };
+        int posInteligent[] = { 0, 0, 0 };
         int posI = 0;
         int posJ = 0;
 
@@ -87,7 +87,8 @@ public class App {
         System.out.println("------------------------------------------------------------");
     }
 
-    public static boolean comprSiFicha(String taulell[][], int posI, int posJ) { // Comprovar si en la posició hi ha una fitxa o no
+    public static boolean comprSiFicha(String taulell[][], int posI, int posJ) { // Comprovar si en la posició hi ha una
+                                                                                 // fitxa o no
         if (taulell[posI][posJ] == "X" || taulell[posI][posJ] == "O") {
             return false;
         } else {
@@ -105,7 +106,8 @@ public class App {
         }
     }
 
-    public static boolean jugador(String taulell[][], int posI, int posJ, String jugador[], int[] segFase) { // Torn del jugador
+    public static boolean jugador(String taulell[][], int posI, int posJ, String jugador[], int[] segFase) { // Torn del
+                                                                                                             // jugador
         boolean posNoOcu = false;
         boolean posNoOcuelimina = false;
         int primer = 0;
@@ -160,9 +162,15 @@ public class App {
     public static boolean millorPos(String taulell[][], int[] posInteligent) { // Comprova si hi ha una millor posició
         for (int i = 0; i < taulell.length; i++) {
             posInteligent[1] = 0; // j
+            posInteligent[2] = 2;
+
             for (int j = 0; j < taulell[0].length; j++) {
-                if (taulell[i][j] == "X" || taulell[i][j] == "O") {
+                if (taulell[i][j] == "O") {
                     posInteligent[1]++; // j
+                } else if (taulell[i][j] == " ") {
+                    posInteligent[2] = i;
+                } else if (taulell[i][j] == "X") {
+                    break;
                 }
             }
             if (posInteligent[1] == 2) {
@@ -177,9 +185,14 @@ public class App {
 
         for (int j = 0; j < taulell[0].length; j++) {
             posInteligent[0] = 0; // i
+            posInteligent[2] = 2; // j
             for (int i = 0; i < taulell.length; i++) {
-                if (taulell[i][j] == "X" || taulell[i][j] == "O") {
+                if (taulell[i][j] == "O") {
                     posInteligent[0]++; // i
+                } else if (taulell[i][j] == " ") {
+                    posInteligent[2] = j;
+                } else if (taulell[i][j] == "X") {
+                    break;
                 }
             }
             if (posInteligent[0] == 2) {
@@ -189,12 +202,12 @@ public class App {
                 return true;
             }
         }
-        posInteligent[0] = 0; // i
 
-        if ((taulell[0][0] == "X" && taulell[2][2] == "X") || (taulell[2][0] == "X" || taulell[0][2] == "X")) {
-            return true;
-        }
-        if ((taulell[0][0] == "O" && taulell[2][2] == "O") || (taulell[2][0] == "O" || taulell[0][2] == "O")) {
+        if ((taulell[0][0] == "O" && taulell[2][2] == "O") || (taulell[2][0] == "O" && taulell[0][2] == "O")) {
+            System.out.println("Wala3");
+            posInteligent[0] = 3; // i
+            posInteligent[1] = 3; // j
+            posInteligent[2] = 1; // j
             return true;
         }
 
@@ -207,122 +220,69 @@ public class App {
         boolean posNoOcu = false;
         boolean posNoOcue = false;
         int primer = 1;
-        // if (millorPos(taulell, posInteligent)) {
-        //     if (posInteligent[0] == 3) {
-        //         while (!posNoOcue) {
-        //             int posIe = (int) (Math.random() * 3);
-        //             int posJe = posInteligent[1];
-        //             if (comprSiFicha(taulell, posIe, posJe)) {
-        //                 segFase[1]++;
-        //                 taulell[posIe][posJe] = jugador[1];
-        //                 posNoOcu = true;
-        //                 if ((segFase[1] > 3)) {
-        //                     while (!posNoOcue) {
-        //                         int posIe1 = (int) (Math.random() * 3);
-        //                         int posJe1 = (int) (Math.random() * 3);
-        //                         if (taulell[posIe1][posJe1].equals(jugador[1])) {
-        //                             taulell[posIe1][posJe1] = " ";
-        //                             posNoOcue = true;
-        //                         }
-        //                     }
-        //                     if ((posNoOcu == true && posNoOcue == false) || (posNoOcu == false && posNoOcue == true)) {
-        //                         segFase[1]--;
-        //                     }
-        //                 }
-        //                 if (!guanyat(taulell, primer, jugador)) {
-        //                     return false;
-        //                 }
-        //             }
-        //         }
-        //     }
 
-        //     else if (posInteligent[1] == 3) {
-        //         while (!posNoOcue) {
-        //             int posJe = (int) (Math.random() * 3);
-        //             int posIe = posInteligent[0];
-        //             if (comprSiFicha(taulell, posIe, posJe)) {
-        //                 segFase[1]++;
-        //                 taulell[posIe][posJe] = jugador[1];
-        //                 posNoOcu = true;
-        //                 if ((segFase[1] > 3)) {
-        //                     while (!posNoOcue) {
-        //                         int posIe1 = (int) (Math.random() * 3);
-        //                         int posJe1 = (int) (Math.random() * 3);
-        //                         if (taulell[posIe1][posJe1].equals(jugador[1])) {
-        //                             taulell[posIe1][posJe1] = " ";
-        //                             posNoOcue = true;
-        //                         }
-        //                     }
-        //                     if ((posNoOcu == true && posNoOcue == false) || (posNoOcu == false && posNoOcue == true)) {
-        //                         segFase[1]--;
-        //                     }
-        //                 }
-        //                 if (!guanyat(taulell, primer, jugador)) {
-        //                     return false;
-        //                 }
+        int vegades = 0;
+        while (!posNoOcu) {
 
-        //             }
-        //         }
+            if (millorPos(taulell, posInteligent)) {
+                if (posInteligent[1] == 3 && posInteligent[0] == 3) {
+                    posI = (int) (Math.random() * 3);
+                    posJ = (int) (Math.random() * 3);
+                    System.out.println("Mo" + posI + posJ);
+                    vegades++;
+                } else if (posInteligent[0] == 3) {
+                    posJ = posInteligent[1];
+                    posI = posInteligent[2];
+                    System.out.println("re = " + posI + posJ);
+                    vegades++;
+                }
 
-        //     }
+                else if (posInteligent[1] == 3) {
+                    posI = posInteligent[0];
+                    posJ = posInteligent[2];
+                    System.out.println("no = " + posI + posJ);
+                    vegades++;
 
-        //     else if (((taulell[0][0] == "X" && taulell[2][2] == "X") || (taulell[2][0] == "X" || taulell[0][2] == "X")) || (taulell[0][0] == "O" && taulell[2][2] == "O") || (taulell[2][0] == "O" || taulell[0][2] == "O")){
-        //         while (!posNoOcue) {
-        //             int posJe = 1;
-        //             int posIe = 1;
-        //             if (comprSiFicha(taulell, posIe, posJe)) {
-        //                 segFase[1]++;
-        //                 taulell[posIe][posJe] = jugador[1];
-        //                 posNoOcu = true;
-        //                 if ((segFase[1] > 3)) {
-        //                     while (!posNoOcue) {
-        //                         int posIe1 = (int) (Math.random() * 3);
-        //                         int posJe1 = (int) (Math.random() * 3);
-        //                         if (taulell[posIe1][posJe1].equals(jugador[1])) {
-        //                             taulell[posIe1][posJe1] = " ";
-        //                             posNoOcue = true;
-        //                         }
-        //                     }
-        //                     if ((posNoOcu == true && posNoOcue == false) || (posNoOcu == false && posNoOcue == true)) {
-        //                         segFase[1]--;
-        //                     }
-        //                 }
-        //                 if (!guanyat(taulell, primer, jugador)) {
-        //                     return false;
-        //                 }
-        //             }
-        //         }
-        //     }
+                }
+                System.out.println(vegades);
+            }
 
-        // }
-
-        // else {
-            while (!posNoOcu) {
+            else {
                 posI = (int) (Math.random() * 3);
                 posJ = (int) (Math.random() * 3);
-                if (comprSiFicha(taulell, posI, posJ)) {
-                    segFase[1]++;
-                    taulell[posI][posJ] = jugador[1];
-                    posNoOcu = true;
-                    if ((segFase[1] > 3)) {
-                        while (!posNoOcue) {
-                            int posIe = (int) (Math.random() * 3);
-                            int posJe = (int) (Math.random() * 3);
-                            if (taulell[posIe][posJe].equals(jugador[1])) {
-                                taulell[posIe][posJe] = " ";
-                                posNoOcue = true;
-                            }
-                        }
-                        if ((posNoOcu == true && posNoOcue == false) || (posNoOcu == false && posNoOcue == true)) {
-                            segFase[1]--;
+                System.out.println(".. = " + posI + posJ);
+            }
+
+            if (vegades >= 1) {
+                posI = (int) (Math.random() * 3);
+                posJ = (int) (Math.random() * 3);
+                System.out.println("... = " + posI + posJ);
+                vegades = 0;
+            }
+
+            if (comprSiFicha(taulell, posI, posJ)) {
+                System.out.println("WALAAAAAAA");
+                segFase[1]++;
+                taulell[posI][posJ] = jugador[1];
+                posNoOcu = true;
+                if ((segFase[1] > 3)) {
+                    while (!posNoOcue) {
+                        int posIe = (int) (Math.random() * 3);
+                        int posJe = (int) (Math.random() * 3);
+                        if (taulell[posIe][posJe].equals(jugador[1])) {
+                            taulell[posIe][posJe] = " ";
+                            posNoOcue = true;
                         }
                     }
-                    if (!guanyat(taulell, primer, jugador)) {
-                        return false;
+                    if ((posNoOcu == true && posNoOcue == false) || (posNoOcu == false && posNoOcue == true)) {
+                        segFase[1]--;
                     }
                 }
+                if (!guanyat(taulell, primer, jugador)) {
+                    return false;
+                }
             }
-        // }
+        }
         System.out.println("Tirada de la màquina: I=" + (posI + 1) + " J=" + (posJ + 1));
         return true;
     }
