@@ -107,9 +107,10 @@ public class App {
                         System.out.println(sep);
                         System.out.println("PUNTUACIONES:");
                         System.out.println(sep);
-                        System.out.println("El equipo "+nikoOarnau[0]+" tiene "+puntos()+" puntos.");
+                        System.out.println("El equipo "+nikoOarnau[0]+" tiene ");
+                        puntos(registroPunts, 0);
+                        System.out.print(" puntos.");
                         System.out.println();
-
                         registroPunts.forEach((una,dosa) ->{
                             if (una.equals(0)){
                                 for (Integer[] wala:dosa){
@@ -117,9 +118,12 @@ public class App {
                                 }
                             }
                         });
+
                         System.out.println();
                         System.out.println();
-                        System.out.println("El equipo "+nikoOarnau[1]+" tiene "+puntos()+" puntos.");
+                        System.out.println("El equipo "+nikoOarnau[1]+" tiene ");
+                        puntos(registroPunts, 1);
+                        System.out.print(" puntos.");                        
                         System.out.println();
                         registroPunts.forEach((una,dosa) ->{
                             if (una.equals(1)){
@@ -281,6 +285,19 @@ public class App {
         return puntua;
     }
 
+
+        public static void puntos(HashMap<Integer, ArrayList<Integer[]>> registroPunts, int equip){
+            int end[] = {0};
+
+            registroPunts.forEach((k,l) -> {
+                if (k == equip){
+                    for (Integer[] punts:l){
+                        end[0] = end[0]+punts[1];
+                    }
+                }
+            });
+            System.out.print(end[0]);
+        }
 
 
 }
