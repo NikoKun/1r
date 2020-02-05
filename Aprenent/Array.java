@@ -18,10 +18,11 @@ public class Array{
 
         System.out.println("El nom en la posició aleatoria és: "+arrayNoms[posicio]);
 
-        System.out.println("El nom en la posició 0 és: "+arrayNoms[0]);
-        System.out.println("El nom en la posició 1 és: "+arrayNoms[1]);
-        System.out.println("El nom en la posició 2 és: "+arrayNoms[2]);
-        System.out.println("-----------------------------------------------------------------------");
+        for (int i=0; i<arrayNoms.length; i++){
+            System.out.println("El nom en la posició "+(i++)+" és: "+arrayNoms[i]);
+            System.out.println("-----------------------------------------------------------------------");
+        }
+
         
     }
 }

@@ -10,8 +10,10 @@ public class App {
         int i = 0;
         int j = 0;
 
+        System.out.println("-----------------------------------------------------------");
         int linies = Integer.parseInt(System.console().readLine("Digues el número de línias que vols: "));
         int bombes = Integer.parseInt(System.console().readLine("Digues el número de bombes: "));
+        System.out.println("-----------------------------------------------------------");
 
         int taulell[][] = new int[linies][linies];
         String taulellCOPIA[][] = new String[linies][linies];
@@ -197,11 +199,11 @@ public class App {
         boolean bomba = false;
 
         while (fi != (taulell.length * taulell.length) - bombes && bomba == false) {
-
             String userres = System.console().readLine("Digues una possició semblant a 'Y-X': ");
             String userresArr[] = userres.split("-");
             int X = Integer.parseInt(userresArr[0]);
             int Y = Integer.parseInt(userresArr[1]);
+            System.out.println("-----------------------------------------------------------");
 
             System.out.print("\n");
             System.out.print("    ");

@@ -10,10 +10,10 @@ public class While{
        }
 
 
-       while(iteracio<llista.length){                       //Si esborrem el While superior, aquestes línies ens mostrarien els 3 noms de la array.
-       System.out.println((llista[iteracio]));    //Al posar la array mostrarem els noms...   
-       iteracio++;
-   }
+//       while(iteracio<llista.length){                       //Si esborrem el While superior, aquestes línies ens mostrarien els 3 noms de la array.
+//       System.out.println((llista[iteracio]));    //Al posar la array mostrarem els noms...   
+//       iteracio++;
+//   }
 
        System.out.println("Ja!!!");
 

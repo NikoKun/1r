@@ -1,13 +1,13 @@
 package app;
 
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class App {
     public static void main(String[] args) throws Exception {
         String sep1 = "--------------------------------------------------------------------------------------------------------------------";
 
-        ArrayList<LocalDate> fecha = new ArrayList<LocalDate>();
+        ArrayList<LocalDateTime> fecha = new ArrayList<LocalDateTime>();
 
         ArrayList<ArrayList<String>> recordatorios = new ArrayList<ArrayList<String>>();
         ArrayList<String> titulo = new ArrayList<String>();
@@ -16,7 +16,7 @@ public class App {
         recordatorios.add(titulo);
         recordatorios.add(cuerpo);
 
-        LocalDate esteMes = LocalDate.now();
+        LocalDateTime esteMes = LocalDateTime.now();
 
 
         boolean sortir = false;
@@ -43,12 +43,23 @@ public class App {
                     menu(sep1);
                 }
             }
-
+            //"^\\d{4}-\\d{1}-\\d{1}$"
             switch(opcioMenu){
             case 1:
                 System.out.println(sep1);
-                String fechaA = System.console().readLine("Escoge la fecha: (YYYY-MM-DD) ");
-                esteMes = LocalDate.parse(fechaA);
+                boolean ja = false;
+                String fechaA = "0";
+                while (!ja){
+                    fechaA = System.console().readLine("Escoge la fecha: (YYYY-MM-DD) ");
+                    if (fechaA.matches("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$")){
+                        ja = true;
+                    }
+                    else{
+                        System.out.println("Data incorrecta!!!");
+                    }   
+                }
+
+                esteMes = LocalDateTime.parse(fechaA+"T00:00:00");
 
 
             break;
@@ -72,9 +83,12 @@ public class App {
                 System.console().readLine("Presiona ENTER para continuar...");
             break;
             case 4:
+                LocalDateTime dataTemp = LocalDateTime.now();
+                esteMes = LocalDateTime.of(esteMes.getYear(), esteMes.getMonthValue(), esteMes.getDayOfMonth(), dataTemp.getHour(), dataTemp.getMinute(), 0);
                 recordatorios.get(0).add(System.console().readLine("Escribe el título: "));
                 recordatorios.get(1).add(System.console().readLine("Escribe la nota: "));
                 fecha.add(esteMes);
+                esteMes = LocalDateTime.of(esteMes.getYear(), esteMes.getMonthValue(), esteMes.getDayOfMonth(), 0, 0, 0);
             break;
             case 5:
                 printaNotesMes(sep1, fecha, recordatorios, esteMes);
@@ -109,18 +123,21 @@ public class App {
 
     //-------------------------------------------------------------------------------------------------------------------------
 
-    public static void presentacion(String sep1, LocalDate esteMes) {
+    public static void presentacion(String sep1, LocalDateTime esteMes) {
+        LocalDateTime dataTemp = LocalDateTime.now();
+        esteMes = LocalDateTime.of(esteMes.getYear(), esteMes.getMonthValue(), esteMes.getDayOfMonth(), dataTemp.getHour(), dataTemp.getMinute(), 0);
         System.out.println(sep1);
         System.out.println("   Bienvenido a tu agenda de confianza!!!!");
-        System.out.println("   By: Mark Zuck\tFecha:  " + esteMes);
+        System.out.println("   By: Mark Zuck\tFecha:  " + esteMes.getYear()+"-"+esteMes.getMonthValue()+"-"+esteMes.getDayOfMonth()+"   "+esteMes.getHour()+":"+esteMes.getMinute());
         System.out.println(sep1);
+        esteMes = LocalDateTime.of(esteMes.getYear(), esteMes.getMonthValue(), esteMes.getDayOfMonth(), 0, 0, 0);
     }
 
     //-------------------------------------------------------------------------------------------------------------------------
 
-    public static void printaMes(ArrayList<LocalDate> fecha, String sep1,  LocalDate esteMes) {
-        LocalDate esteMes1 = esteMes;
-        LocalDate seleccion = LocalDate.of(1900, 01, 01);
+    public static void printaMes(ArrayList<LocalDateTime> fecha, String sep1,  LocalDateTime esteMes) {
+        LocalDateTime esteMes1 = esteMes;
+        LocalDateTime seleccion = LocalDateTime.of(1900, 01, 01,0,0,0);
         boolean sortit = false;
         boolean record = false;
         int compta = 1;
@@ -136,7 +153,7 @@ public class App {
             if (!sortit) {
                 record = false;
 
-                for (LocalDate ldt:fecha){
+                for (LocalDateTime ldt:fecha){
                     if (ldt.equals(esteMes)){
                         record = true;
                         seleccion = ldt;
@@ -182,12 +199,12 @@ public class App {
     //-------------------------------------------------------------------------------------------------------------------------
 
 
-    public static void printaNotesMes(String sep1, ArrayList<LocalDate> fecha, ArrayList<ArrayList<String>> recordatorios, LocalDate esteMes) {
+    public static void printaNotesMes(String sep1, ArrayList<LocalDateTime> fecha, ArrayList<ArrayList<String>> recordatorios, LocalDateTime esteMes) {
         System.out.println(sep1);
         for (int i=0; i<fecha.size(); i++){
-            LocalDate dataTemporal = fecha.get(i);
+            LocalDateTime dataTemporal = fecha.get(i);
             if (dataTemporal.getMonthValue()== esteMes.getMonthValue()){
-                System.out.println("Día: "+dataTemporal.getDayOfMonth()+" - "+recordatorios.get(0).get(i));
+                System.out.println("Día assignado: "+dataTemporal.getDayOfMonth()+" - "+recordatorios.get(0).get(i));
                 System.out.println("   "+recordatorios.get(1).get(i));
                 System.out.println();
                 System.out.println();
