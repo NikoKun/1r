@@ -2,16 +2,16 @@ package classes;
 
 import classes.Client;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Factura {
     private String id;
-    private LocalDateTime data;
+    private LocalDate data;
     private ArrayList<Linia> linies = new ArrayList<Linia>();
     private Client client;
 
-    public Factura(String id, LocalDateTime data, ArrayList<Linia> linies, Client client) {
+    public Factura(String id, LocalDate data, ArrayList<Linia> linies, Client client) {
         this.id = id;
         this.data = data;
         this.linies = linies;
@@ -28,10 +28,10 @@ public class Factura {
     }
 
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

@@ -6,7 +6,7 @@ public class Producte {
     int stock;
     float preu;
 
-    public Producte(String id, String nomProducte, int stock, int preu) {
+    public Producte(String id, String nomProducte, int stock, float preu) {
         this.id = id;
         this.nomProducte = nomProducte;
         this.stock = stock;
@@ -51,7 +51,7 @@ public class Producte {
     public void sumarStock(int stocki) {
         this.stock += stocki;
     }
-    public void restaStock(int stocki) {
+    public void restarStock(int stocki) {
         this.stock -= stocki;
     }
 

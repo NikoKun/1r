@@ -43,8 +43,10 @@ public class Linia {
 
 
 
-
-
+    public void canviaPreu(float preuFinal) {
+        this.preuFinal -= preuFinal;
+    }
+    
 
 
 
