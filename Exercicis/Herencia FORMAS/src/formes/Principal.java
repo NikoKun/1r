@@ -71,14 +71,15 @@ public class Principal {
                     break;
                     case 3:
                         System.out.println(sep);
-                        System.out.println("Digues el tipus de mesura que vols utilitzar: (mm, cm, m ...)");
+                        System.out.println();
+                        System.out.println(sep);
+                        System.out.println("1 - Isosceles");
+                        System.out.println("2 - Escalé");
+                        System.out.println("3 - Equilater");
+                        System.out.println("----");
+                        System.out.println();
+                        System.out.println("Digues el tipus de triangle que vols fer: ");
                         int op = Integer.parseInt(System.console().readLine());
-
-
-
-
-
-
                         switch (op){
                             case 1:
                             // isosceles
@@ -100,12 +101,15 @@ public class Principal {
                                 System.out.println("Digues el tipus de mesura que vols utilitzar: (mm, cm, m ...)");
                                 mesura = System.console().readLine();
                                 System.out.println();
+
                                 System.out.println("Digues la base: ");
                                 formes[0] = Float.parseFloat(System.console().readLine());
                                 System.out.println();
+
                                 System.out.println("Digues el primer costat: ");
                                 float segon = Float.parseFloat(System.console().readLine());
                                 System.out.println();
+
                                 System.out.println("Digues el segon costat: ");
                                 float tercer = Float.parseFloat(System.console().readLine());
                                 System.out.println();
