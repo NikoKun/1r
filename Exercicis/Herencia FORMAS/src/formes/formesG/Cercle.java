@@ -33,9 +33,9 @@ public class Cercle extends Formes{
     @Override
     public void printa() {
         System.out.println("Forma: "+getClass().getSimpleName());
-        System.out.println("Radi: "+this.radio+unitatMesura);
-        System.out.println("Perimetre: "+this.perimetre+unitatMesura);
-        System.out.println("Area: "+this.area+unitatMesura+"²");
+        System.out.println("Radi: "+df.format(this.radio)+unitatMesura);
+        System.out.println("Perimetre: "+df.format(this.perimetre)+unitatMesura);
+        System.out.println("Area: "+df.format(this.area)+unitatMesura+"²");
     }
 
 }

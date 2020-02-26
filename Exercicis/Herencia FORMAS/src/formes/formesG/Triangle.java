@@ -30,10 +30,9 @@ public class Triangle extends Formes{
 
     @Override
     public void calcular() {
-        // calcular hipotenusa
-        // perimetro = (hipotenusa * 2) * base
-        this.area = (this.base * this.altura) / 2;
-
+        float hypo =(float) (Math.sqrt(Math.pow(this.base, 2) + Math.pow(this.altura, 2)))*2;
+        this.area = (hypo * 2) + this.base;
+        this.perimetre = (this.base * this.altura) / 2;
     }
 
 
@@ -41,10 +40,10 @@ public class Triangle extends Formes{
     public void printa() {
         System.out.println();
         System.out.println("Forma: "+getClass().getSimpleName());
-        System.out.println("Base: "+this.base+unitatMesura);
-        System.out.println("Alçada: "+this.altura+unitatMesura);
-        System.out.println("Perimetre: "+this.perimetre+unitatMesura);
-        System.out.println("Area: "+this.area+unitatMesura+"²");
+        System.out.println("Base: "+df.format(this.base)+unitatMesura);
+        System.out.println("Alçada: "+df.format(this.altura)+unitatMesura);
+        System.out.println("Perimetre: "+df.format(this.perimetre)+unitatMesura);
+        System.out.println("Area: "+df.format(this.area)+unitatMesura+"²");
         System.out.println();
     }
     

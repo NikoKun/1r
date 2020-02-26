@@ -1,6 +1,5 @@
 package formes;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import formes.formesG.Cercle;
@@ -10,16 +9,16 @@ import formes.formesG.Triangle;
 
 public class Principal {
     static String sep = "----------------------------------------------------------------";
-    static DecimalFormat df = new DecimalFormat("#.##");
 
     public static void main(String[] args) throws Exception {
-        int formes[] = { 0, 0 };
+        float formes[] = { 0.0f, 0.0f };
         String mesura = "0";
         boolean finalitza = false;
         boolean finalitzaOno = false;
         int num = 0;
 
         while (!finalitza){
+            finalitzaOno = false;
             while (!finalitzaOno){
             ArrayList<Formes> obj = new ArrayList<Formes>(); 
             System.out.println(sep);
@@ -47,10 +46,10 @@ public class Principal {
                         mesura = System.console().readLine();
                         System.out.println();
                         System.out.println("Digues la alçada: ");
-                        formes[0] = Integer.parseInt(System.console().readLine());
+                        formes[0] = Float.parseFloat(System.console().readLine());
                         System.out.println();
                         System.out.println("Digues la amplada: ");
-                        formes[1] = Integer.parseInt(System.console().readLine());
+                        formes[1] = Float.parseFloat(System.console().readLine());
 
                         Rectangle formQ = new Rectangle(mesura, formes[0], formes[1]);
                         formQ.calcular();
@@ -62,7 +61,7 @@ public class Principal {
                         mesura = System.console().readLine();
                         System.out.println();
                         System.out.println("Digues el seu radi: ");
-                        formes[0] = Integer.parseInt(System.console().readLine());
+                        formes[0] = Float.parseFloat(System.console().readLine());
 
                         Cercle formC = new Cercle(mesura, formes[0]);
                         formC.calcular();
@@ -74,14 +73,17 @@ public class Principal {
                         mesura = System.console().readLine();
                         System.out.println();
                         System.out.println("Digues la base: ");
-                        formes[0] = Integer.parseInt(System.console().readLine());
+                        formes[0] = Float.parseFloat(System.console().readLine());
                         System.out.println();
                         System.out.println("Digues l'altura: ");
-                        formes[1] = Integer.parseInt(System.console().readLine());
+                        formes[1] = Float.parseFloat(System.console().readLine());
 
                         Triangle formT = new Triangle(mesura, formes[0], formes[1]);
                         formT.calcular();
                         obj.add(formT);
+                    break;
+                    default:
+                        System.out.println("Forma saltada...");
                     break;
                 }
             }
@@ -89,9 +91,10 @@ public class Principal {
                 System.out.println(sep);
                 System.out.println("RESULTATS;");
                 System.out.println(sep);
-
+                System.out.println();
                 for (Formes res : obj) {
                     res.printa();
+                    System.out.println();
                 }
                 System.out.println(sep);
             }
@@ -102,7 +105,6 @@ public class Principal {
             if (fi.equalsIgnoreCase("si")){
                 finalitza = true;
             }
-
         }
     }
 }

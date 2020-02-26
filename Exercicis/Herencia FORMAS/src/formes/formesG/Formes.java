@@ -1,8 +1,11 @@
 package formes.formesG;
 
+import java.text.DecimalFormat;
+
 public abstract class Formes {
     float perimetre, area;
     String unitatMesura;
+    protected static DecimalFormat df = new DecimalFormat("#.##");
 
 
 
