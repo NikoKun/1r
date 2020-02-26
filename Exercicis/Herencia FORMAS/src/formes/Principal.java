@@ -3,9 +3,11 @@ package formes;
 import java.util.ArrayList;
 
 import formes.formesG.Cercle;
+import formes.formesG.Equilater;
+import formes.formesG.Escale;
 import formes.formesG.Formes;
 import formes.formesG.Rectangle;
-import formes.formesG.Triangle;
+import formes.formesG.Isosceles;
 
 public class Principal {
     static String sep = "----------------------------------------------------------------";
@@ -70,17 +72,63 @@ public class Principal {
                     case 3:
                         System.out.println(sep);
                         System.out.println("Digues el tipus de mesura que vols utilitzar: (mm, cm, m ...)");
-                        mesura = System.console().readLine();
-                        System.out.println();
-                        System.out.println("Digues la base: ");
-                        formes[0] = Float.parseFloat(System.console().readLine());
-                        System.out.println();
-                        System.out.println("Digues l'altura: ");
-                        formes[1] = Float.parseFloat(System.console().readLine());
+                        int op = Integer.parseInt(System.console().readLine());
 
-                        Triangle formT = new Triangle(mesura, formes[0], formes[1]);
-                        formT.calcular();
-                        obj.add(formT);
+
+
+
+
+
+                        switch (op){
+                            case 1:
+                            // isosceles
+                                System.out.println("Digues el tipus de mesura que vols utilitzar: (mm, cm, m ...)");
+                                mesura = System.console().readLine();
+                                System.out.println();
+                                System.out.println("Digues la base: ");
+                                formes[0] = Float.parseFloat(System.console().readLine());
+                                System.out.println();
+                                System.out.println("Digues l'altura: ");
+                                formes[1] = Float.parseFloat(System.console().readLine());
+        
+                                Isosceles formTI = new Isosceles(mesura, formes[0], formes[1]);
+                                formTI.calcular();
+                                obj.add(formTI);
+                            break;
+                            case 2:
+                            // escaleno
+                                System.out.println("Digues el tipus de mesura que vols utilitzar: (mm, cm, m ...)");
+                                mesura = System.console().readLine();
+                                System.out.println();
+                                System.out.println("Digues la base: ");
+                                formes[0] = Float.parseFloat(System.console().readLine());
+                                System.out.println();
+                                System.out.println("Digues el primer costat: ");
+                                float segon = Float.parseFloat(System.console().readLine());
+                                System.out.println();
+                                System.out.println("Digues el segon costat: ");
+                                float tercer = Float.parseFloat(System.console().readLine());
+                                System.out.println();
+
+                                Escale formTEs = new Escale(mesura, formes[0], formes[1], segon, tercer);
+                                formTEs.calcular();
+                                obj.add(formTEs);
+                            break;
+                            case 3:
+                                // equilatero
+                                System.out.println("Digues el tipus de mesura que vols utilitzar: (mm, cm, m ...)");
+                                mesura = System.console().readLine();
+                                System.out.println();
+                                System.out.println("Digues la base: ");
+                                formes[0] = Float.parseFloat(System.console().readLine());
+                                System.out.println();
+        
+                                Equilater formTE = new Equilater(mesura, formes[0], formes[1]);
+                                formTE.calcular();
+                                obj.add(formTE);
+                            break;
+                        }
+
                     break;
                     default:
                         System.out.println("Forma saltada...");
