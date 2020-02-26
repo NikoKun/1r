@@ -8,7 +8,7 @@ import formes.formesG.Escale;
 import formes.formesG.Formes;
 import formes.formesG.Rectangle;
 import formes.formesG.Isosceles;
-
+//dada
 public class Principal {
     static String sep = "----------------------------------------------------------------";
 
