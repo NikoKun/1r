@@ -40,11 +40,7 @@ public abstract class Formes {
 
 //-------------------------------------------------------------------------------------
 
-    public void calcular() {
+    public abstract void calcular();
 
-    }
-
-    public void printa() {
-        // printar cosas en cada classe
-    }
+    public abstract void printa();
 }

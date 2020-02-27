@@ -1,11 +1,12 @@
 package formes.formesG;
 
-public class Cercle extends Formes{
+public class Cercle implements Formes{
     final private float pi = 3.1415926535f;
-    float radio;
+    float perimetre, area,radio;
+    String unitatMesura;
 
     public Cercle(String unitatMesura, float radio) {
-        super(unitatMesura);
+        this.unitatMesura = unitatMesura;
         this.radio = radio;
     }
 
@@ -35,7 +36,7 @@ public class Cercle extends Formes{
         System.out.println("Forma: "+getClass().getSimpleName());
         System.out.println("Radi: "+df.format(this.radio)+unitatMesura);
         System.out.println("Perimetre: "+df.format(this.perimetre)+unitatMesura);
-        System.out.println("Area: "+df.format(this.area)+unitatMesura+"²");
+        System.out.println("Area: "+df.format(this.area)+" "+unitatMesura+"²");
     }
 
 }

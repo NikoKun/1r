@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import formes.formesG.Cercle;
 import formes.formesG.Equilater;
 import formes.formesG.Escale;
-import formes.formesG.Formes;
 import formes.formesG.Rectangle;
+import formes.formesG.Triangle;
 import formes.formesG.Isosceles;
 
 public class Principal {
@@ -22,7 +22,10 @@ public class Principal {
         while (!finalitza){
             finalitzaOno = false;
             while (!finalitzaOno){
-            ArrayList<Formes> obj = new ArrayList<Formes>(); 
+            ArrayList<Cercle> objCercle = new ArrayList<Cercle>();
+            ArrayList<Rectangle> objRectangle = new ArrayList<Rectangle>(); 
+            ArrayList<Triangle> objTriangle = new ArrayList<Triangle>(); 
+        
             System.out.println(sep);
             System.out.println("Benvingut al principi del programa!!!!");
             System.out.println(sep);
@@ -54,7 +57,7 @@ public class Principal {
                         formes[1] = Float.parseFloat(System.console().readLine());
 
                         Rectangle formQ = new Rectangle(mesura, formes[0], formes[1]);
-                        obj.add(formQ);
+                        objRectangle.add(formQ);
                     break;
                     case 2:
                         System.out.println(sep);
@@ -65,7 +68,7 @@ public class Principal {
                         formes[0] = Float.parseFloat(System.console().readLine());
 
                         Cercle formC = new Cercle(mesura, formes[0]);
-                        obj.add(formC);
+                        objCercle.add(formC);
                     break;
                     case 3:
                         System.out.println(sep);
@@ -91,7 +94,7 @@ public class Principal {
                                 formes[1] = Float.parseFloat(System.console().readLine());
         
                                 Isosceles formTI = new Isosceles(mesura, formes[0], formes[1]);
-                                obj.add(formTI);
+                                objTriangle.add(formTI);
                             break;
                             case 2:
                             // escaleno
@@ -111,8 +114,8 @@ public class Principal {
                                 float tercer = Float.parseFloat(System.console().readLine());
                                 System.out.println();
 
-                                Escale formTEs = new Escale(mesura, formes[0], formes[1], segon, tercer);
-                                obj.add(formTEs);
+                                Escale formTEs = new Escale(mesura, formes[0], segon, tercer);
+                                objTriangle.add(formTEs);
                             break;
                             case 3:
                                 // equilatero
@@ -123,8 +126,8 @@ public class Principal {
                                 formes[0] = Float.parseFloat(System.console().readLine());
                                 System.out.println();
         
-                                Equilater formTE = new Equilater(mesura, formes[0], formes[1]);
-                                obj.add(formTE);
+                                Equilater formTE = new Equilater(mesura, formes[0], formes[0]);
+                                objTriangle.add(formTE);
                             break;
                         }
 
@@ -139,7 +142,28 @@ public class Principal {
                 System.out.println("RESULTATS;");
                 System.out.println(sep);
                 System.out.println();
-                for (Formes res : obj) {
+                System.out.println();
+                System.out.println(" - RECTANGLE");
+                System.out.println();
+                for (Rectangle res : objRectangle) {
+                    res.calcular();
+                    res.printa();
+                    System.out.println();
+                }
+                System.out.println();
+                System.out.println();
+                System.out.println(" - CERCLE");
+                System.out.println();
+                for (Cercle res : objCercle) {
+                    res.calcular();
+                    res.printa();
+                    System.out.println();
+                }
+                System.out.println();
+                System.out.println();
+                System.out.println(" - TRIANGLES");
+                System.out.println();
+                for (Triangle res : objTriangle) {
                     res.calcular();
                     res.printa();
                     System.out.println();
