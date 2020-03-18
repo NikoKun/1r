@@ -3,6 +3,7 @@ package app;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -24,7 +25,15 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import objects.Client;
+import objects.Habitacio;
+import objects.Hotel;
+import objects.Reserva;
+
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 
 
@@ -39,7 +48,7 @@ public class Events extends JFrame{
     
     JLabel dniL, nomL, cogL, numPersonesL, numNitsL, calendariL, nomHotelL, registreNovaHabL, numRegistreL, persRegistreL, consultaReserva, nomClientReservaL, reservaPendentL, reservaConfL;
     //   Imatges
-    JLabel nomIMG, cogIMG;
+    JLabel nomIMG, cogIMG, dniIMG, numNitsIMG, numPersonesIMG, nomClientReservaIMG;
     
     
     JTextField dni, nom, cog, numPersones, numNits, nomHotel, numRegistre, persRegistre, nomClientReserva;
@@ -58,6 +67,12 @@ public class Events extends JFrame{
     JTextField jtfEntrada;
     JCheckBox mostra;
 
+    DefaultTableModel model1, model2;
+    JScrollPane scroll1, scroll2;
+    
+	boolean nomB = false, cogB = false, dniB = false, numNitsB = false, numPersB = false;
+
+	
     public Events() {
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,7 +82,7 @@ public class Events extends JFrame{
 //        this.setResizable(false);
         this.setMinimumSize(new Dimension(1200, 700));
         this.getContentPane().setBackground(Color.black);
-        this.setTitle("T√≠tulo del programucho...");
+        this.setTitle("TÌtulo del programucho...");
 
         
         posarPanells();
@@ -90,6 +105,9 @@ public class Events extends JFrame{
         
         // PanellGesti√≥
         posarReservaPendent();
+        
+        
+        listenerTexts();
 
     }
 
@@ -120,7 +138,7 @@ public class Events extends JFrame{
     	titleGestio.setBounds(0,20, panellGestio.getWidth(),40);
     	titleGestio.setHorizontalAlignment(SwingConstants.CENTER);  // CENTRARRRRR
     	titleGestio.setFont(new Font("Liberation Serif", Font.BOLD, 30));
-    	titleGestio.setText("Gesti√≥");
+    	titleGestio.setText("GestiÛ");
         panellGestio.add(titleGestio);
         
         
@@ -151,9 +169,12 @@ public class Events extends JFrame{
     	
         dni = new JTextField("");
         dni.setBounds(170,95,175,20);
+        dni.setName("dni");
         panellClient.add(dni);
         
-        
+        dniIMG = new JLabel();
+        dniIMG.setBounds(360,79,200,50);
+    	panellClient.add(dniIMG);
     	
         
     	nomL = new JLabel();
@@ -164,11 +185,11 @@ public class Events extends JFrame{
     	
         nom = new JTextField("");
         nom.setBounds(170,125,175,20);
+        nom.setName("nom");
         panellClient.add(nom);
         
         nomIMG = new JLabel();
         nomIMG.setBounds(360,110,200,50);
-        nomIMG.setText("AAA");
     	panellClient.add(nomIMG);
         
         
@@ -183,28 +204,34 @@ public class Events extends JFrame{
     	
         cog = new JTextField("");
         cog.setBounds(170,155,175,20);
+        cog.setName("cog");
         panellClient.add(cog);
         
         cogIMG = new JLabel();
         cogIMG.setBounds(360,140,200,50);
-        cogIMG.setText("AAA");
     	panellClient.add(cogIMG);
         
-        
-        
-        
+     
+
         
     	numPersonesL = new JLabel();
     	numPersonesL.setBounds(20,170,200,50);
     	numPersonesL.setFont(new Font("Liberation Serif", Font.BOLD, 17));
-    	numPersonesL.setText("Num. Persones:");
+    	numPersonesL.setText("Num.Persones:");
         panellClient.add(numPersonesL);
         
         numPersones = new JTextField("");
         numPersones.setBounds(170,185,50,20);
+        numPersones.setName("numPersones");
         panellClient.add(numPersones);
         
+        numPersonesIMG = new JLabel();
+        numPersonesIMG.setBounds(250,170,200,50);
+    	panellClient.add(numPersonesIMG);
         
+        
+    	
+    	
     	numNitsL = new JLabel();
     	numNitsL.setBounds(20,200,200,50);
     	numNitsL.setFont(new Font("Liberation Serif", Font.BOLD, 17));
@@ -213,7 +240,12 @@ public class Events extends JFrame{
     	
     	numNits = new JTextField("");
     	numNits.setBounds(170,215,50,20);
+    	numNits.setName("numNits");
         panellClient.add(numNits);
+        
+        numNitsIMG = new JLabel();
+        numNitsIMG.setBounds(250,200,200,50);
+    	panellClient.add(numNitsIMG);
     }
     
     
@@ -236,6 +268,7 @@ public class Events extends JFrame{
     	reserva = new JButton("Reserva");
     	reserva.setBounds(150,610, panellClient.getWidth() -300,30);
     	reserva.setHorizontalAlignment(SwingConstants.CENTER);  // CENTRARRRRR
+    	reserva.setEnabled(false);
         panellClient.add(reserva);
     }
     
@@ -259,6 +292,7 @@ public class Events extends JFrame{
     	botoGuarda1 = new JButton("Guarda");
     	botoGuarda1.setBounds(150,130, panellBack.getWidth() -300,30);
     	botoGuarda1.setHorizontalAlignment(SwingConstants.CENTER);  // CENTRARRRRR
+    	botoGuarda1.setName("botoGuarda1");
     	panellBack.add(botoGuarda1);
     }
     
@@ -268,7 +302,7 @@ public class Events extends JFrame{
     	registreNovaHabL = new JLabel();
     	registreNovaHabL.setBounds(20,175,250,50);
     	registreNovaHabL.setFont(new Font("Liberation Serif", Font.BOLD, 17));
-    	registreNovaHabL.setText("Registre nova habitaci√≥");
+    	registreNovaHabL.setText("Registre nova habitaciÛ");
     	panellBack.add(registreNovaHabL);
     	
     	
@@ -326,6 +360,9 @@ public class Events extends JFrame{
     	nomClientReserva.setBounds(155,365,150,20);
     	panellBack.add(nomClientReserva);
     	
+    	nomClientReservaIMG = new JLabel();
+    	nomClientReservaIMG.setBounds(360,140,200,50);
+    	panellClient.add(nomClientReservaIMG);
     	
 
     	DefaultListModel<String> model = new DefaultListModel<String>();
@@ -368,25 +405,25 @@ public class Events extends JFrame{
     	panellGestio.add(reservaPendentL);
     	
     	
-    	DefaultTableModel model1 = new DefaultTableModel();
-    	model1.addColumn("Reserva");
+    	model1 = new DefaultTableModel();
     	model1.addColumn("Dia");
+    	model1.addColumn("Dni");
     	model1.addColumn("Persones");
-    	model1.addColumn("Habitaci√≥");
+    	model1.addColumn("HabitaciÛ");
     	reservaPendent = new JTable(model1);
     	reservaPendent.setBounds(30,125,340,225);
     	reservaPendent.setFont(new Font("Liberation Serif", Font.BOLD, 17));
     	panellGestio.add(reservaPendent);
-    	JScrollPane scroll1 = new JScrollPane(reservaPendent, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    	scroll1 = new JScrollPane(reservaPendent, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     	scroll1.setBounds(30,125,340,215);
     	panellGestio.add(scroll1);
     	
-
     	
+
     	reservaConfL = new JLabel();
     	reservaConfL.setBounds(30,350,200,50);
     	reservaConfL.setFont(new Font("Liberation Serif", Font.BOLD, 17));
-    	reservaConfL.setText("Reserves pendents");
+    	reservaConfL.setText("Reserves confirmades");
     	panellGestio.add(reservaConfL);
     	
     	
@@ -396,80 +433,185 @@ public class Events extends JFrame{
     	panellGestio.add(dataAEscollir);
     	
     	
-    	DefaultTableModel model2 = new DefaultTableModel();
+    	model2 = new DefaultTableModel();
     	model2.addColumn("Nom");
     	model2.addColumn("Date In");
     	model2.addColumn("Date Out");
-    	model2.addColumn("Habitaci√≥");
+    	model2.addColumn("HabitaciÛ");
     	reservaConf = new JTable(model2);
     	reservaConf.setBounds(30,400,340,225);
     	reservaConf.setFont(new Font("Liberation Serif", Font.BOLD, 17));
     	panellGestio.add(reservaConf);
-    	JScrollPane scroll2 = new JScrollPane(reservaConf, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    	scroll2 = new JScrollPane(reservaConf, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     	scroll2.setBounds(30,400,340,215);
     	panellGestio.add(scroll2);
     }
     
     
     
-    // listeneeeeeeeeeeeeerrrrrrrrrrrrrrrsssssssssss
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     private void listenerTexts() {
         ImageIcon iconCorrecte = new ImageIcon("BienIcons.png");
+        ImageIcon iconCorrecteReduit = new ImageIcon(iconCorrecte.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+        ImageIcon iconIncorrecte = new ImageIcon("MalIcons.png");
+        ImageIcon iconIncorrecteReduit = new ImageIcon(iconIncorrecte.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 
         
+    	ArrayList<Hotel> hotels = new ArrayList<Hotel>();                      // NO SE NO SE EHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+    	ArrayList<Client> clients = new ArrayList<Client>();
+    	ArrayList<Habitacio> rooms = new ArrayList<Habitacio>();
+    	ArrayList<Reserva> pendingReservation = new ArrayList<Reserva>();
+    	ArrayList<Reserva> confirmedReservation = new ArrayList<Reserva>();
+    	
         
         KeyListener listener = new KeyListener(){
 //            JTextField  numNits, numRegistre;
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (e.toString().matches("*")) {         // A√±adir Matches    Solo caracteres, sin simbolos ni numeros
-					if (e.getClass().toString().equals("nom")) {
-						nomIMG.setText("");
-						nomIMG.setIcon(iconCorrecte);
+				
+				if (e.getComponent().getName().equalsIgnoreCase("nom")) {
+					if (Functions.matchesOnlyChar(nom.getText())) {
+						nomIMG.setIcon(iconCorrecteReduit);
 						panellClient.add(nomIMG);
+						nomB = true;
+					}
+					else {
+						nomIMG.setIcon(iconIncorrecteReduit);
+						panellClient.add(nomIMG);
+						nomB = false;
 					}
 					
-					else if (e.getClass().toString().equals("cog")) {
-						
+					if (Functions.comprovaClientValid(nomB, cogB, dniB, numNitsB, numPersB)) {
+						reserva.setEnabled(true);
+				        panellClient.add(reserva);
+					}
+					else {
+						reserva.setEnabled(false);
+				        panellClient.add(reserva);
+					}
+				}
+				else if (e.getComponent().getName().equalsIgnoreCase("cog")) {
+					if (Functions.matchesOnlyChar(cog.getText())) {
+						cogIMG.setIcon(iconCorrecteReduit);
+						panellClient.add(cogIMG);
+						cogB = true;
+					}
+					else {
+						cogIMG.setIcon(iconIncorrecteReduit);
+						panellClient.add(cogIMG);
+						cogB = false;
 					}
 					
-					else if (e.getClass().toString().equals("nomClientReserva")) {
-							
+					if (Functions.comprovaClientValid(nomB, cogB, dniB, numNitsB, numPersB)) {
+						reserva.setEnabled(true);
+				        panellClient.add(reserva);
+					}
+					else {
+						reserva.setEnabled(false);
+				        panellClient.add(reserva);
 					}
 				}
-				else if (e.toString().matches("*")) {         // A√±adir Matches
-					if (e.getClass().equals(nomHotel)) {
-						
+				else if (e.getComponent().getName().equalsIgnoreCase("dni")) {
+					if (Functions.validar(dni.getText())) {
+						dniIMG.setIcon(iconCorrecteReduit);
+						panellClient.add(dniIMG);
+						dniB = true;
 					}
-				}
-				else if (e.toString().matches("*")) {         // A√±adir Matches	  8 numeros y una letra
-
-					if (e.getClass().equals(dni)) {
-						
+					else {
+						dniIMG.setIcon(iconIncorrecteReduit);
+						panellClient.add(dniIMG);
+						dniB = false;
 					}
-				}
-				else if (e.toString().matches("*")) {         // A√±adir Matches   solo numeros
-					if (e.getClass().equals(numNits)) {
-						
-					}
-					else if (e.getClass().equals(numRegistre)) {
-						
-					}
-					else if (e.getClass().equals(numPersones)) {
-						
-					}
-					else if (e.getClass().equals(persRegistre)) {
-						
-					}
-				}
-
-				else {
 					
+					if (Functions.comprovaClientValid(nomB, cogB, dniB, numNitsB, numPersB)) {
+						reserva.setEnabled(true);
+				        panellClient.add(reserva);
+					}
+					else {
+						reserva.setEnabled(false);
+				        panellClient.add(reserva);
+					}
+				}
+				else if (e.getComponent().getName().equalsIgnoreCase("numNits")) {
+					if (Functions.matchesOnlyNumbers40(numNits.getText())) {
+						numNitsIMG.setIcon(iconCorrecteReduit);
+						panellClient.add(numNitsIMG);
+						numNitsB = true;
+					}
+					else {
+						numNitsIMG.setIcon(iconIncorrecteReduit);
+						panellClient.add(numNitsIMG);
+						numNitsB = false;
+					}
+					
+					if (Functions.comprovaClientValid(nomB, cogB, dniB, numNitsB, numPersB)) {
+						reserva.setEnabled(true);
+				        panellClient.add(reserva);
+					}
+					else {
+						reserva.setEnabled(false);
+				        panellClient.add(reserva);
+					}
+				}
+				else if (e.getComponent().getName().equalsIgnoreCase("numPersones")) {
+					if (Functions.matchesOnlyNumbers6(numPersones.getText())) {
+						numPersonesIMG.setIcon(iconCorrecteReduit);
+						panellClient.add(numPersonesIMG);
+						numPersB = true;
+					}
+					else {
+						numPersonesIMG.setIcon(iconIncorrecteReduit);
+						panellClient.add(numPersonesIMG);
+						numPersB = false;
+					}
+					
+					if (Functions.comprovaClientValid(nomB, cogB, dniB, numNitsB, numPersB)) {
+						reserva.setEnabled(true);
+				        panellClient.add(reserva);
+					}
+					else {
+						reserva.setEnabled(false);
+				        panellClient.add(reserva);
+					}
 				}
 				
+				
+				
+				
+				else if (e.getComponent().getName().equalsIgnoreCase("numRegistre")) {
+						
+				}
+				else if (e.getComponent().getName().equalsIgnoreCase("persRegistre")) {
+						
+				}	
+				else if (e.getComponent().getName().equalsIgnoreCase("nomClientReserva")) {   // POR HACER -----------------------------------
+					if (Functions.matchesOnlyChar(nomClientReserva.getText())) {
+						nomClientReservaIMG.setIcon(iconCorrecteReduit);
+						panellClient.add(nomClientReservaIMG);
+					}
+					else {
+						nomClientReservaIMG.setIcon(iconIncorrecteReduit);
+						panellClient.add(nomClientReservaIMG);
+					}
+					
+
+				}
 				
 			}
 
@@ -479,11 +621,117 @@ public class Events extends JFrame{
             @Override
             public void keyTyped(KeyEvent e) {
             }
+            
         };
 
+        dni.addKeyListener(listener);
+        nom.addKeyListener(listener);
+        cog.addKeyListener(listener);
+        numNits.addKeyListener(listener);
+        numPersones.addKeyListener(listener);
 
+        
+        ActionListener actionSetTitle = new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setTitle(nomHotel.getText());									// REVISAR
+				Hotel newHotel = new Hotel(nomHotel.getText());
+				hotels.add(newHotel);
+			}
+        };
+        botoGuarda1.addActionListener(actionSetTitle);
 
-        jtfEntrada1.addKeyListener(listener);
-        jtfEntrada2.addKeyListener(listener);
+        
+        
+        ActionListener actrionSetReservaPendent = new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String data = Functions.dataString(calendari);
+		    	
+		    	// A—ADIR LOS DATOS A LOS OBJETOS --------------------------------------------------------------------------
+		    	Client newClient = new Client(dni.getText(), nom.getText(), cog.getText());
+		    	if (Functions.comprovaClient(dni.getText(), clients)) {
+		    		Reserva newReserva = new Reserva(newClient, Integer.parseInt(numPersones.getText()), Integer.parseInt(numNits.getText()), Functions.dataString(calendari));
+		    		pendingReservation.add(newReserva);
+		    		
+			    	String[] infoReservaPendent = {newReserva.getDate(), newReserva.getReservationGuy().getDni(), String.valueOf((newReserva.getNumPeople())), "2"};  // FALTA PONER LA HABITACI”N ----------------------------
+			    	model1.addRow(infoReservaPendent);
+			    	panellGestio.add(scroll1);
+		    	}
+		    	else {
+		    		clients.add(newClient);
+		    		Reserva newReserva = new Reserva(newClient, Integer.parseInt(numPersones.getText()), Integer.parseInt(numNits.getText()), Functions.dataString(calendari));
+		    		pendingReservation.add(newReserva);
+		    		
+			    	String[] infoReservaPendent = {newReserva.getDate(), newReserva.getReservationGuy().getDni(), String.valueOf((newReserva.getNumPeople())), "2"};  // FALTA PONER LA HABITACI”N ----------------------------
+			    	model1.addRow(infoReservaPendent);
+			    	panellGestio.add(scroll1);
+		    	}
+		    	
+
+		    	
+		    	dni.setText("");
+		    	dniIMG.setIcon(null);
+		    	nom.setText("");
+		    	nomIMG.setIcon(null);
+		    	cog.setText("");
+		    	cogIMG.setIcon(null);
+		    	numPersones.setText("");
+		    	numPersonesIMG.setIcon(null);
+		    	numNits.setText("");
+		    	numNitsIMG.setIcon(null);
+		    	
+//		    	calendari = new JCalendar();
+//		    	calendari.setBounds(50,325,300,250);
+//		        panellClient.add(calendari);
+		        
+		    	calendari = new JCalendar();
+		    	calendari.setBounds(50,325,300,250);
+		    	panellClient.add(calendari);
+		    	
+		    	nomB = false;
+		    	cogB = false;
+		    	dniB = false;
+		    	numNitsB = false;
+		    	numPersB = false;
+		    	
+				if (Functions.comprovaClientValid(nomB, cogB, dniB, numNitsB, numPersB)) {
+					reserva.setEnabled(true);
+			        panellClient.add(reserva);
+				}
+				else {
+					reserva.setEnabled(false);
+			        panellClient.add(reserva);
+				}
+			}
+        };
+        reserva.addActionListener(actrionSetReservaPendent);
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
     }
+    
 }

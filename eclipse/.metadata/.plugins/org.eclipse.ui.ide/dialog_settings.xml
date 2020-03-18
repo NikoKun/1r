@@ -6,10 +6,13 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="E:\Todo\Grado Superior\Java\PONIENDO INTERFAZ\1Hotel"/>
 			<item value="/media/arnau.costa/Data1/1r DAW/MP3/Exercicis/passwordLogin"/>
 			<item value="/media/arnau.costa/Data1/1r DAW/MP3/Exercicis/edat"/>
 		</list>
 	</section>
 	<section name="ExternalProjectImportWizard">
+	</section>
+	<section name="NewWizardAction">
 	</section>
 </section>
